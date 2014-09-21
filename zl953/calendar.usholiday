@@ -9,7 +9,11 @@
 
 LANG=UTF-8
 
+<<<<<<< HEAD
 01/02	New Year's Day
+=======
+02/02	New Year's Day
+>>>>>>> testing
 01/14	Julian Calendar New Year's Day
 02/03	Groundhog Day
 02/14	St. Valentine's Day
