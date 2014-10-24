@@ -18,4 +18,5 @@ class TestBaz(unittest.TestCase):
         #self.assertRaises(Exception, baz.Baz, list("abcdef"))
         self.assertRaises(baz.NotAnIntegerListException, baz.Baz, list("abcdef"))
 
- 
+if __name__ =='__main__':
+    unittest.main() 
