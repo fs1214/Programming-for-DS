@@ -33,6 +33,12 @@ class Interval:
 		str(self.lower)+','+str(self.upper)+self.rinclusive*']'+\
 		 (not self.rinclusive)*')'
 	
+	def __eq__(self, other):
+		if isinstance(other, self.__class__):
+			return self.__dict__ == other.__dict__
+		else:
+			return False
+
 	
 def merge_intervals(x,y):
 	if x.real_upper() < y.real_lower()-1 or x.real_lower() > y.real_upper()+1:
