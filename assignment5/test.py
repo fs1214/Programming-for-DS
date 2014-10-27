@@ -1,5 +1,5 @@
 from interval import *
-if True:
+if False:
 	#test for question 1
 	#print 'abc'
 	i = Interval("(1,4]")
@@ -37,7 +37,11 @@ if False:
 	ilist = [Interval(s) for s in slist]
 	print merge_overlapping(ilist)
 	
-if False:
+if True:
+	ilist = [Interval('[1,2]')]
+	newint = Interval('[3,4]')
+	res = insert(ilist,newint)
+	print res
 	slist = ["[1,5]", "[2,7)", "(8,10]", "[8,18]"]
 	ilist = sorted([Interval(s) for s in slist], compare_intervals)
 	newint = Interval("[6,9)")

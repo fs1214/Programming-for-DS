@@ -78,5 +78,7 @@ def insert(ilist, newint):
 		if newint.lower <= interval.lower:
 			newlist.insert(newlist.index(interval), newint)
 			break
+	if len(newlist) == len(ilist):
+		newlist.append(newint)
 	return newlist
 
