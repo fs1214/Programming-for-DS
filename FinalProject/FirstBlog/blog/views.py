@@ -13,8 +13,9 @@ import pandas.io.data as web
 import datetime
  
 def home(request):
+    a = request.GET.get('name')    
     start = datetime.datetime(2010,1,1)
-    end = datetime.datetime(2010,1,30)
+    end = datetime.datetime(2010,1,15)
     f = web.DataReader('IBM','yahoo',start,end)
     a = f['Open']
     b = a.index.tolist()
@@ -25,7 +26,8 @@ def home(request):
     	d = a.tolist()
     	e = round(d[i],2)    
     	array.append([s,e])
-
+	print "abc"
+	
     	
     return render_to_response('index.html',{'array':json.dumps(array)})
 
