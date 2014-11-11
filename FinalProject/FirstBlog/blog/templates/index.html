@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+	  var data = {{array|safe}}
+	  var data = google.visualization.arrayToDataTable(data);
+
+      var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+      }
+    </script>
+<style type="text/css">
+	#chart_div {
+		display: none;
+	}
+</style>
+  </head>
+  <body>
+    <!-- HTML for SEARCH BAR -->
+
+    <input type="text" class="tftextinput" name="q" size="21" maxlength="120">
+
+	<button onclick="javascript:showDiv();">Search</button>
+
+	<div id="chart_div" style="width: 600px; height: 300px;"></div>
+	
+	<script type = "text/javascript">
+		function showDiv(){
+			div = document.getElementById('chart_div');
+			div.style.display = "block";
+		}
+	</script>
+  </body>
+</html>
