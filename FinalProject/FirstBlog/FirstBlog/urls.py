@@ -7,7 +7,7 @@ from blog import views
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'blog.views.home', name='home'),
-    url(r'^sample_graph/$', views.graph, name="graph"),
+    # url(r'^sample_graph/$', views.graph, name="graph"),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
