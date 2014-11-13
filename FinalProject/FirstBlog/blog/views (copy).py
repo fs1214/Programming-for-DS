@@ -11,7 +11,7 @@ from django.template import RequestContext, loader
 import pythoncode
 import pandas.io.data as web
 import datetime
-
+ 
 def home(request):
 	context = {}
 	context['requestMethod'] = request.META['REQUEST_METHOD']
@@ -19,13 +19,9 @@ def home(request):
 	if request.method == 'GET' :
 
 		if request.GET.__contains__('hidden') :
-			#if 'name' in context and 'end_date' in context and 'start_date' in context:
-			context['name'] = request.GET['name']
-			context['start_date'] = request.GET['start_date']
-			context['end_date'] = request.GET['end_date']
-	
-	print context
-				
+
+		  context['name'] = request.GET['name']
+
 	requestContext = RequestContext(request, context)
 
 	templateIndex = loader.get_template('index.html')
@@ -38,27 +34,22 @@ def home(request):
 
 	response.write(renderedTemplate)
 	
-	if 'name' in context:# and 'end_date' in context and 'start_date' in context:
+	if 'name' in context:
 		company = context['name'].encode('ascii','ignore')
-		start_date = context['start_date'].encode('ascii','ignore')
-		end_date = context['end_date'].encode('ascii','ignore')
 		a = request.GET.get('name')
-		start_date = start_date.split('-')
-		end_date = end_date.split('-')
-		
-		start = datetime.datetime(int(start_date[0]),int(start_date[1]),int(start_date[2]))
-		end = datetime.datetime(int(end_date[0]),int(end_date[1]),int(end_date[2]))
-		
+		start = datetime.datetime(2013,12,1)
+		end = datetime.datetime(2013,12,15)
 		f = web.DataReader(company,'yahoo',start,end)
-		a = f['Close']
+		a = f['Open']
 		b = a.index.tolist()
-		array = []
+		array = [['date', 'price']]
 		for i in range(b.__len__()):
 			c = b[i]
 			s = str(c)[:10]
 			d = a.tolist()
 			e = round(d[i],2)
-			array.append(e)
+			array.append([s,e])
 		
-		return render_to_response('index.html',{'array':json.dumps(array), 'start_date':json.dumps(start_date), 'end_date':json.dumps(end_date)})
+		return render_to_response('index.html',{'array':json.dumps(array)})
 	return render_to_response('index.html',{})
+

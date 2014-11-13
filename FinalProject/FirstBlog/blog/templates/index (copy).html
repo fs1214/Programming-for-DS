@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+	  var data = {{array|safe}}
+	  var data = google.visualization.arrayToDataTable(data);
+
+      var options = {
+          title: 'Stock Price',
+          hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+      }
+    </script>
+<style type="text/css">
+	#chart_div {
+		display: none;
+	}
+</style>
+  </head>
+  <body>
+    <!-- HTML for SEARCH BAR -->
+
+	<h2>Info:</h2>
+	
+	{% if name %}
+		<b>Name</b>:{{name}} <br/>
+	{% endif %}
+
+	<form method = "get" action="/">	
+	  <input name='name' type="text" placeholder='enter the name of the stock'/>
+	  <input type='hidden' name='hidden' value=''/>
+	  <input type='submit' value='Search'/>
+	</form>	  
+	
+	<button onclick="javascript:showDiv();">Plot</button>
+
+	<div id="chart_div" style="width: 600px; height: 300px;"></div>
+
+	<script type = "text/javascript">
+		function showDiv(){
+			div = document.getElementById('chart_div');
+			div.style.display = "block";
+		}
+	</script>
+  </body>
+</html>
